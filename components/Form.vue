@@ -1,6 +1,6 @@
 <template>
   <section class="box">
-    <b-field label="Título">
+    <b-field label="Título do Post">
       <b-input v-model="titulo"></b-input>
     </b-field>
 
@@ -29,9 +29,21 @@ export default {
       titulo: "",
     };
   },
+
+  created() {},
+
   methods: {
     clickMe() {
-      this.$buefy.notification.open("Clicked!!");
+      this.$store
+        .dispatch("posts/sendPost")
+        .then(() => {
+          this.$buefy.notification.open("Seu Post foi salvo");
+        })
+        .catch(() => {
+          this.$buefy.notification.open(
+            "Erro ao enviar, tente novamente mais tarde"
+          );
+        });
     },
   },
 };
