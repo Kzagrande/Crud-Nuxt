@@ -1,17 +1,25 @@
 <template>
   <div class="containter">
-    <Carousel :items="filteredPhotos" />
+    <div class="columns section">
+      <div class="column">
+        <b-button type="is-link" @click="openModal({})">Criar Photo</b-button>
+      </div>
+    </div>
+    <Carousel :items="filteredPhotos" @open-modal="openModal" />
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
 import Carousel from "@/components/Carousel";
+import Form from "@/components/Form";
+
 export default {
   name: "index",
 
   components: {
     Carousel,
+    Form,
   },
 
   data() {
@@ -37,6 +45,18 @@ export default {
   methods: {
     loadPhotos() {
       this.$store.dispatch("photos/getPhotos");
+    },
+
+    openModal(info) {
+      this.$buefy.modal.open({
+        parent: this,
+        component: Form,
+        hasModalCard: false,
+        trapFocus: true,
+        props: {
+          info: info,
+        },
+      });
     },
   },
 };

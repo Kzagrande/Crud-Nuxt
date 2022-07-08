@@ -11,14 +11,22 @@
           <div class="card-content">
             <div class="content">
               <p class="title is-6">{{ photo.title }}</p>
+
               <b-field grouped>
                 <p class="control" style="margin-left: auto">
                   <b-button
-                    size="is-small"
-                    type="is-danger"
-                    icon-left="heart"
-                    outlined
-                  />
+                    @click="emitModal(photo)"
+                    type="is-info is-medium"
+                    class="container"
+                    >Atualizar Post</b-button
+                  >
+                  <b-button
+                    @click="deletePhoto"
+                    type="is-danger is-medium"
+                    icon-right="delete"
+                    class="container"
+                    >Remover</b-button
+                  >
                 </p>
               </b-field>
             </div>
@@ -50,6 +58,23 @@ export default {
   methods: {
     info(value) {
       this.test = value;
+    },
+
+    emitModal(info) {
+      this.$emit("open-modal", info);
+    },
+
+    deletePhoto() {
+      this.$store
+        .dispatch("photos/deletePhotos")
+        .then(() => {
+          this.$buefy.notification.open("Sua foto foi deletada");
+        })
+        .catch(() => {
+          this.$buefy.notification.open(
+            "Erro ao enviar, tente novamente mais tarde"
+          );
+        });
     },
   },
 };

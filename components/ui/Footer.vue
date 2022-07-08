@@ -1,15 +1,11 @@
 <template>
-  <footer class="footer">
+  <footer class="footer hero is-medium is-white-ter">
     <div class="content has-text-centered">
       <p>
-        <strong>Bulma</strong> by
-        <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is
-        licensed
-        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The
-        website content is licensed
-        <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"
-          >CC BY NC SA 4.0</a
-        >.
+        <strong>Qual a boa Sp ?</strong> by
+        <a href="https://www.linkedin.com/in/yan-bortoleto/">Yan Casagrande</a>.
+        The source code is licensed
+        <a href="https://github.com/Kzagrande/Crud-Nuxt">GitHub</a>
       </p>
     </div>
   </footer>
@@ -22,3 +18,14 @@ export default {
 </script>
 
 <style></style>
+
+<section class="hero is-medium is-link">
+  <div class="hero-body">
+    <p class="title">
+      Medium hero
+    </p>
+    <p class="subtitle">
+      Medium subtitle
+    </p>
+  </div>
+</section>
