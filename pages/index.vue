@@ -1,12 +1,12 @@
 <template>
-  <div class="containter">
-    <div class="columns section">
-      <div class="column">
-        <b-button type="is-link" @click="openModal({})">Criar Photo</b-button>
-      </div>
+  <section class="containter">
+    <div class="section">
+      <b-button type="is-link" expanded @click="openModal({})"
+        >Criar Photo</b-button
+      >
     </div>
     <Carousel :items="filteredPhotos" @open-modal="openModal" />
-  </div>
+  </section>
 </template>
 
 <script>

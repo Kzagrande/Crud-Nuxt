@@ -56,18 +56,16 @@ export default {
       this.$store
         .dispatch("photos/sendPhotos")
         .then(() => {
-          this.$buefy.notification.open("Sua foto foi salva");
+          setTimeout(() => {
+            this.isLoading = false;
+            this.$buefy.toast.open("Foto salva com sucesso!"),
+              this.$emit("close");
+          }, 3 * 1000);
         })
         .catch(() => {
           this.$buefy.notification.open(
             "Erro ao enviar, tente novamente mais tarde"
           );
-        })
-        .finally(() => {
-          setTimeout(() => {
-            this.isLoading = false;
-            this.$emit("close");
-          }, 3 * 1000);
         });
     },
     updatePhoto() {
@@ -76,18 +74,16 @@ export default {
         .dispatch("photos/updatePhotos")
 
         .then(() => {
-          this.$buefy.notification.open("Sua foto foi atualizada");
+          setTimeout(() => {
+            this.isLoading = false;
+            this.$buefy.toast.open("Foto atualizada com sucesso!"),
+              this.$emit("close");
+          }, 3 * 1000);
         })
         .catch(() => {
           this.$buefy.notification.open(
             "Erro ao enviar, tente novamente mais tarde"
           );
-        })
-        .finally(() => {
-          setTimeout(() => {
-            this.isLoading = false;
-            this.$emit("close");
-          }, 3 * 1000);
         });
     },
   },

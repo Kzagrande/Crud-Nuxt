@@ -18,8 +18,6 @@
         <b-navbar-item>Posts</b-navbar-item>
       </nuxt-link>
     </template>
-
-    <template #end> </template>
   </b-navbar>
 </template>
 

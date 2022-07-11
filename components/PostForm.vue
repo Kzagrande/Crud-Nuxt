@@ -50,20 +50,18 @@ export default {
     savePost() {
       this.isLoading = true;
       this.$store
-        .dispatch("posts/sendPosts")
+        .dispatch("posts/sendPost")
         .then(() => {
-          this.$buefy.notification.open("Seu Post foi salva");
+          setTimeout(() => {
+            this.isLoading = false;
+            this.$buefy.toast.open("Post salvo com sucesso!"),
+              this.$emit("close");
+          }, 3 * 1000);
         })
         .catch(() => {
           this.$buefy.notification.open(
             "Erro ao enviar, tente novamente mais tarde"
           );
-        })
-        .finally(() => {
-          setTimeout(() => {
-            this.isLoading = false;
-            this.$emit("close");
-          }, 3 * 1000);
         });
     },
     updatePost() {
@@ -71,18 +69,16 @@ export default {
       this.$store
         .dispatch("posts/updatePosts")
         .then(() => {
-          this.$buefy.notification.open("Seu Post foi Atualizado");
+          setTimeout(() => {
+            this.isLoading = false;
+            this.$buefy.toast.open("Post atualizado com sucesso!"),
+              this.$emit("close");
+          }, 3 * 1000);
         })
         .catch(() => {
           this.$buefy.notification.open(
             "Erro ao enviar, tente novamente mais tarde"
           );
-        })
-        .finally(() => {
-          setTimeout(() => {
-            this.isLoading = false;
-            this.$emit("close");
-          }, 3 * 1000);
         });
     },
   },

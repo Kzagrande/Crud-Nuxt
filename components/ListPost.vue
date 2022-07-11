@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="columns section">
-      <div class="column">
-        <b-button type="is-link" @click="openModal({})">Criar Post</b-button>
-      </div>
+      <b-button type="is-link" expanded @click="openModal({})"
+        >Criar Post</b-button
+      >
     </div>
     <TablePost :posts="posts" @open-modal="emitModal" />
   </div>
