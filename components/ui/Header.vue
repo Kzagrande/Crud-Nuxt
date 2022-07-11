@@ -14,25 +14,12 @@
         <b-navbar-item>Página Principal</b-navbar-item>
       </nuxt-link>
 
-      <nuxt-link to="new-post">
-        <b-navbar-item>Crir um novo Post</b-navbar-item>
-      </nuxt-link>
-
       <nuxt-link to="posts">
         <b-navbar-item>Posts</b-navbar-item>
       </nuxt-link>
     </template>
 
-    <template #end>
-      <b-navbar-item tag="div">
-        <div class="buttons">
-          <a class="button is-primary">
-            <strong>Entre</strong>
-          </a>
-          <a class="button is-light">Cadastre-se </a>
-        </div>
-      </b-navbar-item>
-    </template>
+    <template #end> </template>
   </b-navbar>
 </template>
 

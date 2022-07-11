@@ -12,11 +12,31 @@ export default {
             .$get("https://jsonplaceholder.typicode.com/posts")
             .then((response) => {
                 context.commit('STORE', response)
-                console.table(response)
+
             })
 
 
 
-    }
+    },
+
+    updatePosts(context) {
+
+        return {}
+        /*  return this.$axios
+             .$put("https://jsonplaceholder.typicode.com/posts").then((response) => {
+                 context.commit('STORE', response)
+             }) */
+    },
+
+    deletePosts(context) {
+
+        return {}
+        /* return this.$axios
+            .$("https://jsonplaceholder.typicode.com/posts").then((response) => {
+                context.commit('STORE', response)
+            }) */
+    },
+
 
 }
+

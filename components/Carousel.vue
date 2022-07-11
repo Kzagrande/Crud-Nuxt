@@ -18,7 +18,7 @@
                     @click="emitModal(photo)"
                     type="is-info is-medium"
                     class="container"
-                    >Atualizar Post</b-button
+                    >Atualizar Photo</b-button
                   >
                   <b-button
                     @click="deletePhoto"
@@ -68,7 +68,15 @@ export default {
       this.$store
         .dispatch("photos/deletePhotos")
         .then(() => {
-          this.$buefy.notification.open("Sua foto foi deletada");
+          this.$buefy.dialog.confirm({
+            title: "Deletando Foto",
+            message: "Deseja Realmente deletar esta foto ?",
+            confirmText: "Deletar Foto",
+            type: "is-danger",
+            hasIcon: true,
+            onConfirm: () =>
+              this.$buefy.toast.open("Foto deletada com sucesso!"),
+          });
         })
         .catch(() => {
           this.$buefy.notification.open(

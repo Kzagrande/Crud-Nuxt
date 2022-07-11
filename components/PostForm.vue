@@ -1,21 +1,17 @@
 <template>
   <div class="modal-card" style="width: auto">
     <header class="modal-card-head">
-      <p class="modal-card-title">Formulário de Foto</p>
+      <p class="modal-card-title">Formulário de Posts</p>
 
       <button type="button" class="delete" @click="$emit('close')" />
     </header>
     <section class="modal-card-body">
-      <b-field label="Título da Foto">
-        <b-input v-model="info.title"></b-input>
+      <b-field label="Título do Post" type="">
+        <b-input v-model="info.title" maxlength="30"></b-input>
       </b-field>
 
-      <b-field label="Título da thumbnail" type="">
-        <b-input v-model="info.thumbnailUrl" maxlength="30"></b-input>
-      </b-field>
-
-      <b-field label="Url" type="">
-        <b-input v-model="info.url"></b-input>
+      <b-field label="Comentário do Post" type="">
+        <b-input v-model="info.body"></b-input>
       </b-field>
     </section>
     <footer class="modal-card-foot">
@@ -23,17 +19,18 @@
       <b-button
         v-if="Object.keys(info).length > 0"
         label="Atualizar"
-        @click="updatePhoto()"
+        @click="updatePost()"
         type="is-primary"
       />
-      <b-button v-else label="Criar" @click="savePhoto()" type="is-primary" />
+      <b-button v-else label="Criar" @click="savePost()" type="is-primary" />
     </footer>
+    <b-loading v-model="isLoading" :can-cancel="true"></b-loading>
   </div>
 </template>
 
 <script>
 export default {
-  name: "Form",
+  name: "PostForm",
 
   props: {
     info: {
@@ -43,35 +40,49 @@ export default {
   },
   data() {
     return {
-      titulo: "",
+      isLoading: false,
     };
   },
 
   created() {},
 
   methods: {
-    savePhoto() {
+    savePost() {
+      this.isLoading = true;
       this.$store
-        .dispatch("photos/sendPhotos")
+        .dispatch("posts/sendPosts")
         .then(() => {
-          this.$buefy.notification.open("Sua foto foi salva");
+          this.$buefy.notification.open("Seu Post foi salva");
         })
         .catch(() => {
           this.$buefy.notification.open(
             "Erro ao enviar, tente novamente mais tarde"
           );
+        })
+        .finally(() => {
+          setTimeout(() => {
+            this.isLoading = false;
+            this.$emit("close");
+          }, 3 * 1000);
         });
     },
-    updatePhoto() {
+    updatePost() {
+      this.isLoading = true;
       this.$store
-        .dispatch("photos/updatePhotos")
+        .dispatch("posts/updatePosts")
         .then(() => {
-          this.$buefy.notification.open("Sua foto foi atualizada");
+          this.$buefy.notification.open("Seu Post foi Atualizado");
         })
         .catch(() => {
           this.$buefy.notification.open(
             "Erro ao enviar, tente novamente mais tarde"
           );
+        })
+        .finally(() => {
+          setTimeout(() => {
+            this.isLoading = false;
+            this.$emit("close");
+          }, 3 * 1000);
         });
     },
   },

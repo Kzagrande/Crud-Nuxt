@@ -12,14 +12,14 @@
 <script>
 import { mapState } from "vuex";
 import Carousel from "@/components/Carousel";
-import Form from "@/components/Form";
+import PhotoForm from "@/components/PhotoForm";
 
 export default {
   name: "index",
 
   components: {
     Carousel,
-    Form,
+    PhotoForm,
   },
 
   data() {
@@ -50,7 +50,7 @@ export default {
     openModal(info) {
       this.$buefy.modal.open({
         parent: this,
-        component: Form,
+        component: PhotoForm,
         hasModalCard: false,
         trapFocus: true,
         props: {

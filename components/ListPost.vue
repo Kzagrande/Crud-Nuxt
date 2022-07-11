@@ -1,41 +1,36 @@
 <template>
-  <div class="containter">
+  <div>
     <div class="columns section">
       <div class="column">
-        <ListPost :posts="posts" @open-modal="openModal" />
+        <b-button type="is-link" @click="openModal({})">Criar Post</b-button>
       </div>
     </div>
+    <TablePost :posts="posts" @open-modal="emitModal" />
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
-import ListPost from "@/components/ListPost";
+import TablePost from "@/components/TablePost";
 import PostForm from "@/components/PostForm";
-
 export default {
-  name: "index",
+  name: "ListPost",
+
+  props: {
+    posts: {
+      type: Array,
+      default: [],
+    },
+  },
 
   components: {
-    ListPost,
-    PostForm,
-  },
-
-  data() {
-    return {};
-  },
-
-  computed: {
-    ...mapState({
-      posts: (state) => state.posts.posts,
-    }),
-  },
-
-  created() {
-    this.loadPosts();
+    TablePost,
   },
 
   methods: {
+    emitModal(info) {
+      this.$emit("open-modal", info);
+    },
+
     openModal(info) {
       this.$buefy.modal.open({
         parent: this,
@@ -46,10 +41,6 @@ export default {
           info: info,
         },
       });
-    },
-
-    loadPosts() {
-      this.$store.dispatch("posts/getPosts");
     },
   },
 };
